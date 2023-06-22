@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import AddComponent from "./components/AddComponent";
+import Header from "./components/Header";
+import CurrentComponent from "./components/CurrentComponent";
+import { useState } from "react";
 
 function App() {
+  const [employees, updateEmployee] = useState([]);
+
+  const addemployee = (payload) => {
+    const employeeArray = [...employees];
+    employeeArray.push(payload);
+    updateEmployee(employeeArray);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <AddComponent addEmployee={addemployee} />
+      <CurrentComponent updateemployee={employees} />
     </div>
   );
 }
